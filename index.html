@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chubby Pika 🚀</title>
 
-<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-
 <style>
-/* (ALL YOUR ORIGINAL CSS — UNCHANGED) */
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
@@ -16,51 +13,194 @@ body{
   color:#fff;
   overflow-x:hidden;
 }
+
 html{scroll-behavior:smooth;}
+
 .bg{
-  position:fixed;width:100%;height:100%;
+  position:fixed;
+  width:100%;
+  height:100%;
   background:linear-gradient(270deg,#ff9900,#00ff66,#0099ff);
   background-size:600% 600%;
   animation:bgMove 12s infinite;
   filter:blur(100px) brightness(0.3);
   z-index:-1;
 }
+
 @keyframes bgMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
+
 .nav{
-  position:fixed;width:100%;top:0;
-  display:flex;justify-content:space-between;
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
   padding:20px 30px;
   backdrop-filter:blur(15px);
   background:rgba(0,0,0,0.5);
   z-index:1000;
 }
-.nav a{color:#00ff99;text-decoration:none;margin-left:20px;font-weight:bold;}
-.hero{text-align:center;padding-top:120px;}
-.logo{width:130px;border-radius:20px;box-shadow:0 0 40px #fff;animation:float 3s infinite;}
-@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
-h1{font-size:60px;background:linear-gradient(90deg,#ffd700,#ff9900);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+.nav a{
+  color:#00ff99;
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:bold;
+}
+
+.hero{
+  text-align:center;
+  padding-top:120px;
+}
+
+.logo{
+  width:130px;
+  border-radius:20px;
+  box-shadow:0 0 40px #fff;
+  animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0);}
+}
+
+h1{
+  font-size:60px;
+  background:linear-gradient(90deg,#ffd700,#ff9900);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
 .subtitle{opacity:0.8;}
+
 .btn{
-  display:inline-block;margin-top:20px;padding:15px 40px;
-  background:#00ff66;color:#000;font-weight:bold;
-  border-radius:12px;text-decoration:none;
+  display:inline-block;
+  margin-top:20px;
+  padding:15px 40px;
+  background:#00ff66;
+  color:#000;
+  font-weight:bold;
+  border-radius:12px;
+  text-decoration:none;
+  box-shadow:0 0 30px #00ff66;
+  transition:0.3s;
 }
+
+.btn:hover{transform:scale(1.1);}
+
+/* SOCIALS */
 .socials{margin-top:25px;}
+
 .socials a{
-  display:inline-flex;align-items:center;
-  margin:5px;padding:12px 20px;
-  border-radius:10px;text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:5px;
+  padding:12px 20px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
   background:rgba(255,255,255,0.05);
-  color:#fff;border:1px solid rgba(255,255,255,0.1);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.1);
 }
-.section{padding:80px 20px;text-align:center;}
-.contract{background:#111;padding:15px;border-radius:10px;cursor:pointer;}
+
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CARDS */
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.card{
+  width:250px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+}
+
+/* CONTRACT */
+.contract{
+  background:#111;
+  padding:15px;
+  border-radius:10px;
+  display:inline-block;
+  cursor:pointer;
+}
+
 .copy{color:#00ff66;}
+
 .footer{text-align:center;padding:30px;opacity:0.6;}
+
+/* HOW TO BUY */
+.steps{
+  max-width:700px;
+  margin:40px auto 0;
+  text-align:left;
+}
+
+.step{
+  display:flex;
+  gap:15px;
+  margin:15px 0;
+  padding:15px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.05);
+}
+
+.step-number{
+  min-width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#00ff66;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+/* 🔥 LIVE POPUP */
+.popup{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#111;
+  padding:12px 18px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  font-size:14px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.4s;
+  z-index:9999;
+}
+
+.popup.show{
+  opacity:1;
+  transform:translateY(0);
+}
 </style>
 </head>
 
@@ -68,6 +208,7 @@ h1{font-size:60px;background:linear-gradient(90deg,#ffd700,#ff9900);-webkit-back
 
 <div class="bg"></div>
 
+<!-- NAV -->
 <div class="nav">
   <div>🐹 Chubby Pika</div>
   <div>
@@ -78,18 +219,21 @@ h1{font-size:60px;background:linear-gradient(90deg,#ffd700,#ff9900);-webkit-back
   </div>
 </div>
 
+<!-- HERO -->
 <div class="hero">
   <img src="https://i.postimg.cc/3wXyV5LD/Chat-GPT-Image-Apr-20-2026-11-02-21-PM.png" class="logo">
   <h1>CHUBBY PIKA</h1>
   <p class="subtitle">🚀 The next viral memecoin</p>
 
-  <!-- 🔥 CONNECT WALLET BUTTON -->
-  <button id="connectBtn" class="btn">Connect Wallet</button>
+  <!-- BUY -->
+  <a href="https://jup.ag/swap/SOL-YOUR_TOKEN_ADDRESS" target="_blank" class="btn">
+  Buy on Jupiter
+  </a>
 
-  <!-- BUY BUTTON (HIDDEN UNTIL CONNECT) -->
-  <div id="buyBox" style="display:none;">
-    <a id="buyBtn" href="#" target="_blank" class="btn">Buy on Jupiter</a>
-  </div>
+  <a href="https://dexscreener.com/solana/YOUR_PAIR_ADDRESS" target="_blank"
+  class="btn" style="background:#111;color:#fff;margin-left:10px;">
+  View Chart
+  </a>
 
   <div class="socials">
     <a href="https://t.me/ChubbyPika" target="_blank">📢 Telegram</a>
@@ -97,16 +241,24 @@ h1{font-size:60px;background:linear-gradient(90deg,#ffd700,#ff9900);-webkit-back
   </div>
 </div>
 
+<!-- ABOUT -->
 <div class="section" id="about">
   <h2>About</h2>
   <p>💲NextGen memecoin 👑make You millionaire 🔥.</p>
 </div>
 
+<!-- TOKENOMICS -->
 <div class="section" id="tokenomics">
   <h2>Tokenomics</h2>
-  <p>Supply: 1B | Tax: 0% | LP Locked 🔒</p>
+  <div class="cards">
+    <div class="card">Supply: 1B</div>
+    <div class="card">Tax: 0%</div>
+    <div class="card">LP Locked 🔒</div>
+    <div class="card">Community Driven</div>
+  </div>
 </div>
 
+<!-- CONTRACT -->
 <div class="section" id="contract">
   <h2>Contract</h2>
   <div class="contract" onclick="copyCA()">
@@ -115,41 +267,61 @@ h1{font-size:60px;background:linear-gradient(90deg,#ffd700,#ff9900);-webkit-back
   <div class="copy">Click to copy</div>
 </div>
 
+<!-- HOW TO BUY -->
 <div class="section" id="buy">
   <h2>How to Buy</h2>
-  <p>1. Install Phantom Wallet<br>
-     2. Buy SOL<br>
-     3. Open Jupiter<br>
-     4. Paste contract<br>
-     5. Swap 🚀</p>
+  <div class="steps">
+    <div class="step"><div class="step-number">1</div>Install Phantom Wallet</div>
+    <div class="step"><div class="step-number">2</div>Buy SOL</div>
+    <div class="step"><div class="step-number">3</div>Open Jupiter</div>
+    <div class="step"><div class="step-number">4</div>Paste contract</div>
+    <div class="step"><div class="step-number">5</div>Swap 🚀</div>
+  </div>
 </div>
 
 <div class="footer">
   chubbypika.com © 2026
 </div>
 
+<!-- POPUP -->
+<div id="popup" class="popup"></div>
+
 <script>
-const connectBtn = document.getElementById("connectBtn");
-const buyBox = document.getElementById("buyBox");
-
-connectBtn.onclick = async () => {
-  if (window.solana && window.solana.isPhantom) {
-    const resp = await window.solana.connect();
-    connectBtn.innerText = "Wallet Connected";
-    buyBox.style.display = "block";
-
-    document.getElementById("buyBtn").href =
-      "https://jup.ag/swap/SOL-YOUR_TOKEN_ADDRESS";
-  } else {
-    window.open("https://phantom.app/", "_blank");
-  }
-};
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
 
 function copyCA(){
   const text=document.getElementById("ca").innerText;
   navigator.clipboard.writeText(text);
   alert("Copied!");
 }
+
+/* 🔥 LIVE BUY POPUPS */
+const messages=[
+"🔥 Someone bought $120",
+"🚀 New holder joined",
+"💰 $350 buy executed",
+"🐳 Whale just entered",
+"📈 $90 swap completed",
+"⚡ Huge buy incoming",
+"💎 Smart money buying",
+"🚀 Chubby Pika pumping"
+];
+
+function showPopup(){
+  const popup=document.getElementById("popup");
+  popup.innerText=messages[Math.floor(Math.random()*messages.length)];
+  popup.classList.add("show");
+  setTimeout(()=>popup.classList.remove("show"),3000);
+}
+
+setInterval(showPopup,5000);
 </script>
 
 </body>
