@@ -33,6 +33,25 @@ html{scroll-behavior:smooth;}
   100%{background-position:0% 50%;}
 }
 
+.nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 30px;
+  backdrop-filter:blur(15px);
+  background:rgba(0,0,0,0.5);
+  z-index:1000;
+}
+
+.nav a{
+  color:#00ff99;
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:bold;
+}
+
 .hero{
   text-align:center;
   padding-top:120px;
@@ -42,6 +61,13 @@ html{scroll-behavior:smooth;}
   width:130px;
   border-radius:20px;
   box-shadow:0 0 40px #fff;
+  animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0);}
 }
 
 h1{
@@ -50,6 +76,8 @@ h1{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
+
+.subtitle{opacity:0.8;}
 
 .btn{
   display:inline-block;
@@ -60,68 +88,40 @@ h1{
   font-weight:bold;
   border-radius:12px;
   text-decoration:none;
+  box-shadow:0 0 30px #00ff66;
 }
 
-/* POPUP (BOTTOM LEFT) */
+.socials{margin-top:25px;}
+
+.socials a{
+  display:inline-flex;
+  margin:5px;
+  padding:12px 20px;
+  border-radius:10px;
+  text-decoration:none;
+  background:rgba(255,255,255,0.05);
+  color:#fff;
+}
+
+/* POPUP */
 .popup{
   position:fixed;
   bottom:20px;
   left:20px;
   background:#111;
-  padding:14px;
-  border-radius:10px;
+  padding:14px 18px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.1);
   font-size:14px;
   opacity:0;
   transform:translateY(20px);
-  transition:0.3s;
+  transition:0.4s;
+  z-index:9999;
 }
 
 .popup.show{
   opacity:1;
   transform:translateY(0);
-}
-
-/* TOP RIGHT NOTIFICATION */
-.top-popup{
-  position:fixed;
-  top:20px;
-  right:20px;
-  background:#111;
-  padding:12px 16px;
-  border-radius:10px;
-  font-size:13px;
-  opacity:0;
-  transform:translateY(-20px);
-  transition:0.3s;
-}
-
-.top-popup.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* COUNTER */
-.counter{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#00ff66;
-  color:#000;
-  padding:12px 16px;
-  border-radius:10px;
-  font-weight:bold;
-}
-
-/* SOUND BUTTON */
-.sound-btn{
-  position:fixed;
-  top:20px;
-  left:20px;
-  background:#111;
-  padding:10px;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:12px;
 }
 </style>
 </head>
@@ -130,86 +130,62 @@ h1{
 
 <div class="bg"></div>
 
+<div class="nav">
+  <div>🐹 Chubby Pika</div>
+</div>
+
 <div class="hero">
   <img src="https://i.postimg.cc/3wXyV5LD/Chat-GPT-Image-Apr-20-2026-11-02-21-PM.png" class="logo">
   <h1>CHUBBY PIKA</h1>
+  <p class="subtitle">🚀 The next viral memecoin</p>
 
   <a href="https://jup.ag/swap/SOL-YOUR_TOKEN_ADDRESS" target="_blank" class="btn">
-  Buy Now
+  Buy on Jupiter
   </a>
+
+  <div class="socials">
+    <a href="https://t.me/ChubbyPika">Telegram</a>
+    <a href="https://x.com/ChubbyPikaX">Twitter</a>
+  </div>
 </div>
 
-<!-- UI ELEMENTS -->
 <div id="popup" class="popup"></div>
-<div id="topPopup" class="top-popup"></div>
-<div id="counter" class="counter">Buys: 0</div>
-<div id="soundBtn" class="sound-btn">🔊 Sound Off</div>
 
 <script>
-// RANDOM WALLET
+// 🔥 RANDOM WALLET GENERATOR
 function randomWallet(){
   const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789";
   let str="";
   for(let i=0;i<6;i++) str+=chars[Math.floor(Math.random()*chars.length)];
-  return str+"...";
+  return str+"..."+chars[Math.floor(Math.random()*chars.length)]+"X";
 }
 
-// RANDOM AMOUNT
+// 🔥 RANDOM AMOUNT
 function randomAmount(){
-  return (Math.random()*5+0.2).toFixed(2);
+  return (Math.random()*5+0.1).toFixed(2);
 }
 
-// COUNTER
-let buyCount=0;
-
-// SOUND
-let soundEnabled=false;
-const soundBtn=document.getElementById("soundBtn");
-
-soundBtn.onclick=()=>{
-  soundEnabled=!soundEnabled;
-  soundBtn.innerText=soundEnabled ? "🔊 Sound On" : "🔇 Sound Off";
-};
-
-// SOUND FUNCTION
-function playSound(){
-  if(!soundEnabled) return;
-  const audio=new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
-  audio.play();
+// 🔥 POPUP MESSAGES
+function generateMessage(){
+  const types=[
+    `💰 ${randomWallet()} bought ${randomAmount()} SOL`,
+    `🚀 ${randomWallet()} swapped SOL`,
+    `🐳 Whale ${randomWallet()} entered`,
+    `📈 ${randomWallet()} aped in`,
+    `💎 New holder ${randomWallet()}`
+  ];
+  return types[Math.floor(Math.random()*types.length)];
 }
 
-// POPUPS
-function showBottomPopup(msg){
+function showPopup(){
   const popup=document.getElementById("popup");
-  popup.innerText=msg;
+  popup.innerText=generateMessage();
   popup.classList.add("show");
+
   setTimeout(()=>popup.classList.remove("show"),3000);
 }
 
-function showTopPopup(msg){
-  const top=document.getElementById("topPopup");
-  top.innerText=msg;
-  top.classList.add("show");
-  setTimeout(()=>top.classList.remove("show"),2500);
-}
-
-// MAIN LOOP
-function generateEvent(){
-  const wallet=randomWallet();
-  const amount=randomAmount();
-
-  const msg=`💰 ${wallet} bought ${amount} SOL`;
-
-  showBottomPopup(msg);
-  showTopPopup("New Buy Detected 🚀");
-
-  buyCount++;
-  document.getElementById("counter").innerText="Buys: "+buyCount;
-
-  playSound();
-}
-
-setInterval(generateEvent, 4000);
+setInterval(showPopup, 4000);
 </script>
 
 </body>
