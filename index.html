@@ -14,12 +14,10 @@ body{
   overflow-x:hidden;
 }
 
-/* SMOOTH SCROLL */
 html{
   scroll-behavior:smooth;
 }
 
-/* ANIMATED GRADIENT BACKGROUND */
 .bg{
   position:fixed;
   width:100%;
@@ -37,7 +35,6 @@ html{
   100%{background-position:0% 50%;}
 }
 
-/* NAVBAR */
 .nav{
   position:fixed;
   width:100%;
@@ -57,7 +54,6 @@ html{
   font-weight:bold;
 }
 
-/* HERO */
 .hero{
   text-align:center;
   padding-top:120px;
@@ -87,7 +83,6 @@ h1{
   opacity:0.8;
 }
 
-/* BUTTON */
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -105,7 +100,34 @@ h1{
   transform:scale(1.1);
 }
 
-/* SECTION */
+/* 🔥 PREMIUM SOCIAL BUTTONS */
+.socials{
+  margin-top:25px;
+}
+
+.socials a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:5px;
+  padding:12px 20px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+  background:rgba(255,255,255,0.05);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+}
+
+.socials a:hover{
+  background:#00ff66;
+  color:#000;
+  transform:translateY(-2px);
+  box-shadow:0 0 20px #00ff66;
+}
+
 .section{
   padding:80px 20px;
   text-align:center;
@@ -119,7 +141,6 @@ h1{
   transform:translateY(0);
 }
 
-/* CARDS */
 .cards{
   display:flex;
   flex-wrap:wrap;
@@ -142,7 +163,6 @@ h1{
   box-shadow:0 0 30px #00ff66;
 }
 
-/* CONTRACT */
 .contract{
   background:#111;
   padding:15px;
@@ -156,14 +176,12 @@ h1{
   color:#00ff66;
 }
 
-/* FOOTER */
 .footer{
   text-align:center;
   padding:30px;
   opacity:0.6;
 }
 
-/* PARTICLES */
 .particle{
   position:absolute;
   width:5px;
@@ -178,7 +196,6 @@ h1{
   from{transform:translateY(100vh);}
   to{transform:translateY(-10vh);}
 }
-
 </style>
 </head>
 
@@ -186,7 +203,6 @@ h1{
 
 <div class="bg"></div>
 
-<!-- PARTICLES -->
 <script>
 for(let i=0;i<40;i++){
   let p=document.createElement("div");
@@ -197,33 +213,34 @@ for(let i=0;i<40;i++){
 }
 </script>
 
-<!-- NAV -->
 <div class="nav">
   <div>🐹 Chubby Pika</div>
   <div>
     <a href="#about">About</a>
     <a href="#tokenomics">Tokenomics</a>
     <a href="#contract">Contract</a>
-    <a href="https://t.me/ChubbyPika">Telegram</a>
-    <a href="https://x.com/ChubbyPikaX">Twitter</a>
   </div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
   <img src="https://i.postimg.cc/3wXyV5LD/Chat-GPT-Image-Apr-20-2026-11-02-21-PM.png" class="logo">
   <h1>CHUBBY PIKA</h1>
   <p class="subtitle">🚀 The next viral memecoin</p>
+
   <a href="#" class="btn">BUY NOW</a>
+
+  <!-- 🔥 PREMIUM SOCIALS -->
+  <div class="socials">
+    <a href="https://t.me/ChubbyPika" target="_blank">📢 Telegram</a>
+    <a href="https://x.com/ChubbyPikaX" target="_blank">🐦 Twitter</a>
+  </div>
 </div>
 
-<!-- ABOUT -->
 <div class="section" id="about">
   <h2>About</h2>
   <p>💲NextGen memecoin 👑make You millionaire 🔥.</p>
 </div>
 
-<!-- TOKENOMICS -->
 <div class="section" id="tokenomics">
   <h2>Tokenomics</h2>
   <div class="cards">
@@ -234,7 +251,6 @@ for(let i=0;i<40;i++){
   </div>
 </div>
 
-<!-- CONTRACT -->
 <div class="section" id="contract">
   <h2>Contract</h2>
   <div class="contract" onclick="copyCA()">
@@ -243,14 +259,11 @@ for(let i=0;i<40;i++){
   <div class="copy">Click to copy</div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   chubbypika.com © 2026
 </div>
 
 <script>
-
-/* SCROLL ANIMATION */
 const sections=document.querySelectorAll(".section");
 window.addEventListener("scroll",()=>{
   sections.forEach(sec=>{
@@ -260,13 +273,11 @@ window.addEventListener("scroll",()=>{
   });
 });
 
-/* COPY */
 function copyCA(){
   const text=document.getElementById("ca").innerText;
   navigator.clipboard.writeText(text);
   alert("Copied!");
 }
-
 </script>
 
 </body>
