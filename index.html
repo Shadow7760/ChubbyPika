@@ -89,28 +89,106 @@ h1{
   border-radius:12px;
   text-decoration:none;
   box-shadow:0 0 30px #00ff66;
+  transition:0.3s;
 }
 
+.btn:hover{transform:scale(1.1);}
+
+/* SOCIALS */
 .socials{margin-top:25px;}
 
 .socials a{
   display:inline-flex;
+  align-items:center;
+  gap:8px;
   margin:5px;
   padding:12px 20px;
   border-radius:10px;
   text-decoration:none;
+  font-weight:bold;
   background:rgba(255,255,255,0.05);
   color:#fff;
+  border:1px solid rgba(255,255,255,0.1);
 }
 
-/* POPUP */
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CARDS */
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.card{
+  width:250px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+}
+
+/* CONTRACT */
+.contract{
+  background:#111;
+  padding:15px;
+  border-radius:10px;
+  display:inline-block;
+  cursor:pointer;
+}
+
+.copy{color:#00ff66;}
+
+.footer{text-align:center;padding:30px;opacity:0.6;}
+
+/* HOW TO BUY */
+.steps{
+  max-width:700px;
+  margin:40px auto 0;
+  text-align:left;
+}
+
+.step{
+  display:flex;
+  gap:15px;
+  margin:15px 0;
+  padding:15px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.05);
+}
+
+.step-number{
+  min-width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#00ff66;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+/* 🔥 LIVE POPUP */
 .popup{
   position:fixed;
   bottom:20px;
   left:20px;
   background:#111;
-  padding:14px 18px;
-  border-radius:12px;
+  padding:12px 18px;
+  border-radius:10px;
   border:1px solid rgba(255,255,255,0.1);
   font-size:14px;
   opacity:0;
@@ -130,62 +208,120 @@ h1{
 
 <div class="bg"></div>
 
+<!-- NAV -->
 <div class="nav">
   <div>🐹 Chubby Pika</div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#contract">Contract</a>
+    <a href="#buy">How to Buy</a>
+  </div>
 </div>
 
+<!-- HERO -->
 <div class="hero">
   <img src="https://i.postimg.cc/3wXyV5LD/Chat-GPT-Image-Apr-20-2026-11-02-21-PM.png" class="logo">
   <h1>CHUBBY PIKA</h1>
   <p class="subtitle">🚀 The next viral memecoin</p>
 
+  <!-- BUY -->
   <a href="https://jup.ag/swap/SOL-YOUR_TOKEN_ADDRESS" target="_blank" class="btn">
   Buy on Jupiter
   </a>
 
+  <a href="https://dexscreener.com/solana/YOUR_PAIR_ADDRESS" target="_blank"
+  class="btn" style="background:#111;color:#fff;margin-left:10px;">
+  View Chart
+  </a>
+
   <div class="socials">
-    <a href="https://t.me/ChubbyPika">Telegram</a>
-    <a href="https://x.com/ChubbyPikaX">Twitter</a>
+    <a href="https://t.me/ChubbyPika" target="_blank">📢 Telegram</a>
+    <a href="https://x.com/ChubbyPikaX" target="_blank">🐦 Twitter</a>
   </div>
 </div>
 
+<!-- ABOUT -->
+<div class="section" id="about">
+  <h2>About</h2>
+  <p>💲NextGen memecoin 👑make You millionaire 🔥.</p>
+</div>
+
+<!-- TOKENOMICS -->
+<div class="section" id="tokenomics">
+  <h2>Tokenomics</h2>
+  <div class="cards">
+    <div class="card">Supply: 1B</div>
+    <div class="card">Tax: 0%</div>
+    <div class="card">LP Locked 🔒</div>
+    <div class="card">Community Driven</div>
+  </div>
+</div>
+
+<!-- CONTRACT -->
+<div class="section" id="contract">
+  <h2>Contract</h2>
+  <div class="contract" onclick="copyCA()">
+    <span id="ca">Coming Soon...</span>
+  </div>
+  <div class="copy">Click to copy</div>
+</div>
+
+<!-- HOW TO BUY -->
+<div class="section" id="buy">
+  <h2>How to Buy</h2>
+  <div class="steps">
+    <div class="step"><div class="step-number">1</div>Install Phantom Wallet</div>
+    <div class="step"><div class="step-number">2</div>Buy SOL</div>
+    <div class="step"><div class="step-number">3</div>Open Jupiter</div>
+    <div class="step"><div class="step-number">4</div>Paste contract</div>
+    <div class="step"><div class="step-number">5</div>Swap 🚀</div>
+  </div>
+</div>
+
+<div class="footer">
+  chubbypika.com © 2026
+</div>
+
+<!-- POPUP -->
 <div id="popup" class="popup"></div>
 
 <script>
-// 🔥 RANDOM WALLET GENERATOR
-function randomWallet(){
-  const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789";
-  let str="";
-  for(let i=0;i<6;i++) str+=chars[Math.floor(Math.random()*chars.length)];
-  return str+"..."+chars[Math.floor(Math.random()*chars.length)]+"X";
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+function copyCA(){
+  const text=document.getElementById("ca").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Copied!");
 }
 
-// 🔥 RANDOM AMOUNT
-function randomAmount(){
-  return (Math.random()*5+0.1).toFixed(2);
-}
-
-// 🔥 POPUP MESSAGES
-function generateMessage(){
-  const types=[
-    `💰 ${randomWallet()} bought ${randomAmount()} SOL`,
-    `🚀 ${randomWallet()} swapped SOL`,
-    `🐳 Whale ${randomWallet()} entered`,
-    `📈 ${randomWallet()} aped in`,
-    `💎 New holder ${randomWallet()}`
-  ];
-  return types[Math.floor(Math.random()*types.length)];
-}
+/* 🔥 LIVE BUY POPUPS */
+const messages=[
+"🔥 Someone bought $120",
+"🚀 New holder joined",
+"💰 $350 buy executed",
+"🐳 Whale just entered",
+"📈 $90 swap completed",
+"⚡ Huge buy incoming",
+"💎 Smart money buying",
+"🚀 Chubby Pika pumping"
+];
 
 function showPopup(){
   const popup=document.getElementById("popup");
-  popup.innerText=generateMessage();
+  popup.innerText=messages[Math.floor(Math.random()*messages.length)];
   popup.classList.add("show");
-
   setTimeout(()=>popup.classList.remove("show"),3000);
 }
 
-setInterval(showPopup, 4000);
+setInterval(showPopup,5000);
 </script>
 
 </body>
