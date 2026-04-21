@@ -16,7 +16,6 @@ body{
 
 html{scroll-behavior:smooth;}
 
-/* BACKGROUND */
 .bg{
   position:fixed;
   width:100%;
@@ -34,14 +33,15 @@ html{scroll-behavior:smooth;}
   100%{background-position:0% 50%;}
 }
 
-/* 🔥 FLOATING PARTICLES */
+/* ✅ SAFE PARTICLES */
 .particle{
-  position:absolute;
-  width:4px;
-  height:4px;
+  position:fixed;
+  width:3px;
+  height:3px;
   background:#fff;
   border-radius:50%;
-  opacity:0.5;
+  opacity:0.4;
+  pointer-events:none;
   animation:floatUp linear infinite;
 }
 
@@ -130,14 +130,12 @@ h1{
   border:1px solid rgba(255,255,255,0.1);
 }
 
-/* 🔥 SECTION TITLES IMPROVED */
+/* ✅ BETTER HEADINGS */
 .section h2{
-  font-size:34px;
+  font-size:32px;
   margin-bottom:10px;
-  background:linear-gradient(90deg,#00ff66,#ffffff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 20px rgba(0,255,102,0.3);
+  color:#00ff66;
+  letter-spacing:1px;
 }
 
 /* SECTIONS */
@@ -236,15 +234,17 @@ h1{
 
 <div class="bg"></div>
 
-<!-- PARTICLES -->
+<!-- ✅ PARTICLES SAFE LOAD -->
 <script>
-for(let i=0;i<40;i++){
-  let p=document.createElement("div");
-  p.className="particle";
-  p.style.left=Math.random()*100+"%";
-  p.style.animationDuration=(5+Math.random()*10)+"s";
-  document.body.appendChild(p);
-}
+window.onload = function(){
+  for(let i=0;i<40;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+    p.style.left=Math.random()*100+"%";
+    p.style.animationDuration=(5+Math.random()*10)+"s";
+    document.body.appendChild(p);
+  }
+};
 </script>
 
 <!-- NAV -->
@@ -279,12 +279,65 @@ for(let i=0;i<40;i++){
   </div>
 </div>
 
-<!-- REST SAME -->
-<!-- (About, Tokenomics, Contract, How to Buy unchanged) -->
+<!-- ABOUT -->
+<div class="section" id="about">
+  <h2>About</h2>
+  <p>💲NextGen memecoin 👑make You millionaire 🔥.</p>
+</div>
+
+<!-- TOKENOMICS -->
+<div class="section" id="tokenomics">
+  <h2>Tokenomics</h2>
+  <div class="cards">
+    <div class="card">Supply: 1B</div>
+    <div class="card">Tax: 0%</div>
+    <div class="card">LP Locked 🔒</div>
+    <div class="card">Community Driven</div>
+  </div>
+</div>
+
+<!-- CONTRACT -->
+<div class="section" id="contract">
+  <h2>Contract</h2>
+  <div class="contract" onclick="copyCA()">
+    <span id="ca">Coming Soon...</span>
+  </div>
+  <div class="copy">Click to copy</div>
+</div>
+
+<!-- HOW TO BUY -->
+<div class="section" id="buy">
+  <h2>How to Buy</h2>
+  <div class="steps">
+    <div class="step"><div class="step-number">1</div>Install Phantom Wallet</div>
+    <div class="step"><div class="step-number">2</div>Buy SOL</div>
+    <div class="step"><div class="step-number">3</div>Open Jupiter</div>
+    <div class="step"><div class="step-number">4</div>Paste contract</div>
+    <div class="step"><div class="step-number">5</div>Swap 🚀</div>
+  </div>
+</div>
+
+<div class="footer">chubbypika.com © 2026</div>
 
 <div id="popup" class="popup"></div>
 
 <script>
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+function copyCA(){
+  const text=document.getElementById("ca").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Copied!");
+}
+
+/* POPUP */
 const messages=["🔥 Someone bought","🚀 New holder joined","💰 Big buy"];
 function showPopup(){
   const popup=document.getElementById("popup");
