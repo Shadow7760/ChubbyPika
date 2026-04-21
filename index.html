@@ -100,7 +100,7 @@ h1{
   transform:scale(1.1);
 }
 
-/* 🔥 PREMIUM SOCIAL BUTTONS */
+/* SOCIALS */
 .socials{
   margin-top:25px;
 }
@@ -182,289 +182,42 @@ h1{
   opacity:0.6;
 }
 
-.particle{
-  position:absolute;
-  width:5px;
-  height:5px;
-  background:#fff;
-  border-radius:50%;
-  opacity:0.5;
-  animation:floatUp linear infinite;
+/* HOW TO BUY (NEW) */
+.steps{
+  max-width:700px;
+  margin:40px auto 0;
+  text-align:left;
 }
 
-@keyframes floatUp{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
-}
-</style>
-</head>
-
-<body>
-
-<div class="bg"></div>
-
-<script>
-for(let i=0;i<40;i++){
-  let p=document.createElement("div");
-  p.className="particle";
-  p.style.left=Math.random()*100+"%";
-  p.style.animationDuration=(5+Math.random()*10)+"s";
-  document.body.appendChild(p);
-}
-</script>
-
-<div class="nav">
-  <div>🐹 Chubby Pika</div>
-  <div>
-    <a href="#about">About</a>
-    <a href="#tokenomics">Tokenomics</a>
-    <a href="#contract">Contract</a>
-  </div>
-</div>
-
-<div class="hero">
-  <img src="https://i.postimg.cc/3wXyV5LD/Chat-GPT-Image-Apr-20-2026-11-02-21-PM.png" class="logo">
-  <h1>CHUBBY PIKA</h1>
-  <p class="subtitle">🚀 The next viral memecoin</p>
-
-  <a href="#" class="btn">BUY NOW</a>
-
-  <!-- 🔥 PREMIUM SOCIALS -->
-  <div class="socials">
-    <a href="https://t.me/ChubbyPika" target="_blank">📢 Telegram</a>
-    <a href="https://x.com/ChubbyPikaX" target="_blank">🐦 Twitter</a>
-  </div>
-</div>
-
-<div class="section" id="about">
-  <h2>About</h2>
-  <p>💲NextGen memecoin 👑make You millionaire 🔥.</p>
-</div>
-
-<div class="section" id="tokenomics">
-  <h2>Tokenomics</h2>
-  <div class="cards">
-    <div class="card">Supply: 1B</div>
-    <div class="card">Tax: 0%</div>
-    <div class="card">LP Locked 🔒</div>
-    <div class="card">Community Driven</div>
-  </div>
-</div>
-
-<div class="section" id="contract">
-  <h2>Contract</h2>
-  <div class="contract" onclick="copyCA()">
-    <span id="ca">Coming Soon...</span>
-  </div>
-  <div class="copy">Click to copy</div>
-</div>
-
-<div class="footer">
-  chubbypika.com © 2026
-</div>
-
-<script>
-const sections=document.querySelectorAll(".section");
-window.addEventListener("scroll",()=>{
-  sections.forEach(sec=>{
-    if(sec.getBoundingClientRect().top < window.innerHeight-100){
-      sec.classList.add("show");
-    }
-  });
-});
-
-function copyCA(){
-  const text=document.getElementById("ca").innerText;
-  navigator.clipboard.writeText(text);
-  alert("Copied!");
-}
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chubby Pika 🚀</title>
-
-<style>
-body{
-  margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background:#000;
-  color:#fff;
-  overflow-x:hidden;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-.bg{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:linear-gradient(270deg,#ff9900,#00ff66,#0099ff);
-  background-size:600% 600%;
-  animation:bgMove 12s infinite;
-  filter:blur(100px) brightness(0.3);
-  z-index:-1;
-}
-
-@keyframes bgMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-.nav{
-  position:fixed;
-  width:100%;
-  top:0;
+.step{
   display:flex;
-  justify-content:space-between;
-  padding:20px 30px;
-  backdrop-filter:blur(15px);
-  background:rgba(0,0,0,0.5);
-  z-index:1000;
-}
-
-.nav a{
-  color:#00ff99;
-  text-decoration:none;
-  margin-left:20px;
-  font-weight:bold;
-}
-
-.hero{
-  text-align:center;
-  padding-top:120px;
-}
-
-.logo{
-  width:130px;
-  border-radius:20px;
-  box-shadow:0 0 40px #fff;
-  animation:float 3s infinite ease-in-out;
-}
-
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-  100%{transform:translateY(0);}
-}
-
-h1{
-  font-size:60px;
-  background:linear-gradient(90deg,#ffd700,#ff9900);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.subtitle{
-  opacity:0.8;
-}
-
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:15px 40px;
-  background:#00ff66;
-  color:#000;
-  font-weight:bold;
+  align-items:flex-start;
+  gap:15px;
+  margin:15px 0;
+  padding:15px;
   border-radius:12px;
-  text-decoration:none;
-  box-shadow:0 0 30px #00ff66;
-  transition:0.3s;
-}
-
-.btn:hover{
-  transform:scale(1.1);
-}
-
-/* 🔥 PREMIUM SOCIAL BUTTONS */
-.socials{
-  margin-top:25px;
-}
-
-.socials a{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin:5px;
-  padding:12px 20px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:bold;
   background:rgba(255,255,255,0.05);
-  color:#fff;
   border:1px solid rgba(255,255,255,0.1);
   backdrop-filter:blur(10px);
-  transition:0.3s;
 }
 
-.socials a:hover{
+.step-number{
+  min-width:35px;
+  height:35px;
+  border-radius:50%;
   background:#00ff66;
   color:#000;
-  transform:translateY(-2px);
-  box-shadow:0 0 20px #00ff66;
-}
-
-.section{
-  padding:80px 20px;
-  text-align:center;
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-
-.section.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.cards{
   display:flex;
-  flex-wrap:wrap;
+  align-items:center;
   justify-content:center;
-  gap:20px;
+  font-weight:bold;
 }
 
-.card{
-  width:250px;
-  padding:20px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  border:1px solid rgba(255,255,255,0.1);
-  transition:0.3s;
+.step-text{
+  color:#ddd;
 }
 
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 30px #00ff66;
-}
-
-.contract{
-  background:#111;
-  padding:15px;
-  border-radius:10px;
-  display:inline-block;
-  cursor:pointer;
-}
-
-.copy{
-  margin-top:10px;
-  color:#00ff66;
-}
-
-.footer{
-  text-align:center;
-  padding:30px;
-  opacity:0.6;
-}
-
+/* PARTICLES */
 .particle{
   position:absolute;
   width:5px;
@@ -502,6 +255,7 @@ for(let i=0;i<40;i++){
     <a href="#about">About</a>
     <a href="#tokenomics">Tokenomics</a>
     <a href="#contract">Contract</a>
+    <a href="#buy">How to Buy</a>
   </div>
 </div>
 
@@ -512,7 +266,6 @@ for(let i=0;i<40;i++){
 
   <a href="#" class="btn">BUY NOW</a>
 
-  <!-- 🔥 PREMIUM SOCIALS -->
   <div class="socials">
     <a href="https://t.me/ChubbyPika" target="_blank">📢 Telegram</a>
     <a href="https://x.com/ChubbyPikaX" target="_blank">🐦 Twitter</a>
@@ -540,72 +293,54 @@ for(let i=0;i<40;i++){
     <span id="ca">Coming Soon...</span>
   </div>
   <div class="copy">Click to copy</div>
-</div>
-
-<div class="footer">
-  chubbypika.com © 2026
-</div>
-
-<script>
-const sections=document.querySelectorAll(".section");
-window.addEventListener("scroll",()=>{
-  sections.forEach(sec=>{
-    if(sec.getBoundingClientRect().top < window.innerHeight-100){
-      sec.classList.add("show");
-    }
-  });
-});
-
-function copyCA(){
-  const text=document.getElementById("ca").innerText;
-  navigator.clipboard.writeText(text);
-  alert("Copied!");
-}
-</script>
-
-</body>
-</html>
-<!-- SOCIALS -->
-<div class="socials">
-  <a href="https://t.me/ChubbyPika">Telegram</a>
-  <a href="https://x.com/ChubbyPikaX">Twitter</a>
-</div>
-
-<!-- TRUST -->
-<div class="trust">
-✔ LP Locked 🔒  
-✔ Ownership Renounced  
-✔ Community Driven  
-</div>
-
-</div>
-
-<!-- CONTRACT -->
-<div class="section">
-<h2>Contract</h2>
-
-<div class="contract" onclick="copyCA()">
-<span id="ca">Coming Soon...</span>
-</div>
-
-<p>Click to copy</p>
 </div>
 
 <!-- HOW TO BUY -->
-<div class="section">
-<h2>How to Buy</h2>
+<div class="section" id="buy">
+  <h2>How to Buy</h2>
 
-<div class="steps">
-<div>1. Download Trust Wallet or MetaMask</div>
-<div>2. Buy BNB / ETH</div>
-<div>3. Go to PancakeSwap / Uniswap</div>
-<div>4. Paste contract address</div>
-<div>5. Swap and become a holder 🚀</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-text">Download MetaMask or Trust Wallet</div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-text">Buy BNB or ETH</div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-text">Open PancakeSwap or Uniswap</div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-text">Paste contract address</div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">5</div>
+      <div class="step-text">Swap and become a holder 🚀</div>
+    </div>
+  </div>
 </div>
 
+<div class="footer">
+  chubbypika.com © 2026
 </div>
 
 <script>
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+});
+
 function copyCA(){
   const text=document.getElementById("ca").innerText;
   navigator.clipboard.writeText(text);
