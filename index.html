@@ -8,10 +8,10 @@
 <style>
 body{
   margin:0;
-  font-family:Segoe UI,sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background:#000;
   color:#fff;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
 /* BACKGROUND */
@@ -20,101 +20,103 @@ body{
   width:100%;
   height:100%;
   background:url('https://i.postimg.cc/Nj1ff8Rk/Chat-GPT-Image-Apr-20-2026-11-02-42-PM.png') center/cover no-repeat;
-  filter:blur(10px) brightness(0.3);
+  filter:blur(12px) brightness(0.25);
   z-index:-1;
 }
 
-/* MAIN */
-.container{
+/* NAVBAR */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  position:fixed;
+  width:100%;
+  top:0;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
+}
+
+.nav a{
+  color:#00ff99;
+  text-decoration:none;
+  margin-left:15px;
+  font-weight:bold;
+}
+
+/* HERO */
+.hero{
   text-align:center;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+  padding-top:120px;
 }
 
-/* LOGO */
 .logo{
-  width:110px;
-  border-radius:18px;
-  box-shadow:0 0 20px rgba(255,255,255,0.3);
+  width:120px;
+  border-radius:20px;
+  box-shadow:0 0 25px #fff;
+  animation:float 3s infinite ease-in-out;
 }
 
-/* TITLE */
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
+}
+
 h1{
-  font-size:46px;
-  margin:10px 0;
+  font-size:50px;
   background:linear-gradient(90deg,#ffd700,#ff9900);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-/* LIVE */
-.live{
-  background:red;
-  padding:5px 12px;
-  border-radius:8px;
-  font-weight:bold;
-}
-
-/* STATS */
-.stats{
-  margin-top:10px;
-  font-size:18px;
-}
-
-.green{color:#00ff66;}
-
-/* BUTTON */
 .btn{
   display:inline-block;
-  padding:15px 35px;
   margin-top:20px;
-  background:linear-gradient(45deg,#00ff66,#00cc44);
+  padding:15px 35px;
+  background:#00ff66;
   color:#000;
-  font-size:20px;
   font-weight:bold;
   border-radius:12px;
   text-decoration:none;
-  box-shadow:0 0 25px #00ff66;
+  box-shadow:0 0 20px #00ff66;
 }
 
-/* ALERT */
-.alert{
-  position:fixed;
-  bottom:20px;
-  left:20px;
+/* SECTION */
+.section{
+  padding:60px 20px;
+  text-align:center;
+}
+
+/* CARDS */
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.card{
+  width:250px;
+  padding:20px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+/* CONTRACT */
+.contract{
+  margin-top:20px;
   background:#111;
-  padding:10px 15px;
+  padding:15px;
   border-radius:10px;
-  border:1px solid #00ff66;
-  font-size:14px;
 }
 
-/* LINKS */
-.links{
-  position:fixed;
-  top:15px;
-  right:20px;
-}
-
-.links a{
-  margin-left:15px;
-  color:#00ff99;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* VIEWERS */
-.viewers{
-  margin-left:10px;
-  color:#00ff99;
-}
-
-/* TIMER */
-.timer{
-  margin-top:10px;
-  color:#ff4444;
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:20px;
+  opacity:0.6;
 }
 
 </style>
@@ -124,91 +126,52 @@ h1{
 
 <div class="bg"></div>
 
-<!-- SOCIAL LINKS -->
-<div class="links">
-  <a href="https://t.me/ChubbyPika" target="_blank">Telegram</a>
-  <a href="https://x.com/ChubbyPikaX" target="_blank">Twitter</a>
+<!-- NAV -->
+<div class="nav">
+  <div>🐹 Chubby Pika</div>
+  <div>
+    <a href="https://t.me/ChubbyPika">Telegram</a>
+    <a href="https://x.com/ChubbyPikaX">Twitter</a>
+  </div>
 </div>
 
-<div class="container">
-
-<img src="https://i.postimg.cc/3wXyV5LD/Chat-GPT-Image-Apr-20-2026-11-02-21-PM.png" class="logo">
-
-<h1>CHUBBY PIKA</h1>
-
-<div>
-  <span class="live">🔴 LIVE</span>
-  <span class="viewers" id="viewers">👀 128 watching</span>
+<!-- HERO -->
+<div class="hero">
+  <img src="https://i.postimg.cc/3wXyV5LD/Chat-GPT-Image-Apr-20-2026-11-02-21-PM.png" class="logo">
+  <h1>CHUBBY PIKA</h1>
+  <p>🚀 The next viral memecoin</p>
+  <a href="#" class="btn">BUY NOW</a>
 </div>
 
-<div class="stats">
-📈 Price: <span class="green" id="price">$0.00012</span><br>
-🚀 Change: <span class="green">+63,259%</span><br>
-👥 Holders: <span id="holders">1,245</span>
+<!-- ABOUT -->
+<div class="section">
+  <h2>About</h2>
+  <p>Chubby Pika is a fun, community-driven memecoin built for massive growth and viral energy.</p>
 </div>
 
-<a href="#" class="btn">BUY NOW</a>
-
-<div class="timer" id="timer">
-⏳ Next pump wave in: 05:00
+<!-- TOKENOMICS -->
+<div class="section">
+  <h2>Tokenomics</h2>
+  <div class="cards">
+    <div class="card">Supply: 1B</div>
+    <div class="card">Tax: 0%</div>
+    <div class="card">LP Locked 🔒</div>
+    <div class="card">Community Driven</div>
+  </div>
 </div>
 
+<!-- CONTRACT -->
+<div class="section">
+  <h2>Contract</h2>
+  <div class="contract" id="ca">
+    Coming Soon...
+  </div>
 </div>
 
-<div class="alert" id="alertBox">
-💰 Someone bought $12,450
+<!-- FOOTER -->
+<div class="footer">
+  chubbypika.com © 2026
 </div>
-
-<script>
-
-/* ALERTS */
-const alerts = [
-"💰 Buy $5,200",
-"🚀 New trade $12,900",
-"🔥 Whale $25,000",
-"💸 Ape $3,400",
-"📈 Big buy $18,200"
-];
-
-setInterval(()=>{
-  document.getElementById("alertBox").innerHTML =
-  alerts[Math.floor(Math.random()*alerts.length)];
-},4000);
-
-/* HOLDERS */
-let holders = 1245;
-setInterval(()=>{
-  holders += Math.floor(Math.random()*2);
-  document.getElementById("holders").innerText = holders;
-},3000);
-
-/* PRICE */
-let price = 0.00012;
-setInterval(()=>{
-  price += (Math.random()*0.00002);
-  document.getElementById("price").innerText = "$"+price.toFixed(6);
-},2000);
-
-/* VIEWERS */
-let viewers = 128;
-setInterval(()=>{
-  viewers += Math.floor(Math.random()*5 - 2);
-  if(viewers < 100) viewers = 100;
-  document.getElementById("viewers").innerText = "👀 " + viewers + " watching";
-},2000);
-
-/* TIMER */
-let time = 300;
-setInterval(()=>{
-  time--;
-  let m = Math.floor(time/60);
-  let s = time%60;
-  document.getElementById("timer").innerText =
-  "⏳ Next pump wave in: " + m + ":" + (s<10?"0":"")+s;
-  if(time <= 0) time = 300;
-},1000);
-
-</script>
 
 </body>
 </html>
